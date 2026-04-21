@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<p>${year }년 ${month }월 ${day }일은 ${yoil }입니다.</p>
+	year=<%=request.getParameter("year")%>
+	<p>${myDate.year }년 ${myDate.month }월 ${myDate.day }일은 ${yoil }입니다.</p>
 </body>
 </html>
