@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-@ControllerAdvice("com.fastcampus.ch2") // 지정된 패키지에서 발생한 예외만 처리
+@ControllerAdvice("com.fastcampus.ch3") // 지정된 패키지에서 발생한 예외만 처리
 //@ControllerAdvice		// 모든 패키지에 적용 
 public class GlobalCatcher {
 
