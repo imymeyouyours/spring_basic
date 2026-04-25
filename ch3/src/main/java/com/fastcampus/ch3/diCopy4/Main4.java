@@ -61,7 +61,7 @@ class AppContext {
             try {
                 for (Field fld : bean.getClass().getDeclaredFields()) {
                     if (fld.getAnnotation(Autowired.class) != null) {        // byType
-                        fld.set(bean, getBean(fld.getName()));      // car.engine = obj;
+                        fld.set(bean, getBean(fld.getType()));      // car.engine = obj;
                     }
                 }
             } catch (Exception e) {
