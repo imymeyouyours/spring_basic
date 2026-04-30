@@ -22,7 +22,7 @@ public class PageHandler {
         this.pageSize = pageSize;
 
         totalPage = (int) Math.ceil(totalCnt / (double) pageSize);
-        beginPage = page / naviSiz * naviSiz + 1;
+        beginPage = (page - 1) / naviSiz * naviSiz + 1;
         endPage = Math.min(beginPage + naviSiz - 1, totalPage);
         showPrev = beginPage != 1;
         showNext = endPage != totalPage;
