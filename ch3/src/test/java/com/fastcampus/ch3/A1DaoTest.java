@@ -23,6 +23,9 @@ public class A1DaoTest {
     @Autowired
     DataSource ds;
 
+//    @Autowired
+//    DataSourceTransactionManager tm;
+
     @Test
     public void inserTest() throws Exception {
         // TxManager를 생성

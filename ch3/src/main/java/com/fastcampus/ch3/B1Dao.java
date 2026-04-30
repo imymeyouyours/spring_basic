@@ -10,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 @Repository
-public class A1Dao {
+public class B1Dao {
     @Autowired
     DataSource ds;
 
@@ -22,7 +22,7 @@ public class A1Dao {
 //            conn = ds.getConnection();
             conn = DataSourceUtils.getConnection(ds);
             System.out.println("conn = " + conn);
-            pstmt = conn.prepareStatement("insert into a1 values (?,?)");
+            pstmt = conn.prepareStatement("insert into b1 values (?,?)");
 
             pstmt.setInt(1, key);
             pstmt.setInt(2, value);
@@ -30,19 +30,26 @@ public class A1Dao {
             return pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-            throw e;
         } finally {
 //            close(conn, pstmt);
             close(pstmt);
             DataSourceUtils.releaseConnection(conn, ds);
         }
+
+        return 0;
     }
 
-    public int deleteAll() throws Exception {
-        Connection conn = ds.getConnection();
-        PreparedStatement pstmt = conn.prepareStatement("delete from a1");
-        close(pstmt);
-        return pstmt.executeUpdate();
+    public int deleteAll() {
+        PreparedStatement pstmt = null;
+        try {
+            Connection conn = ds.getConnection();
+            pstmt = conn.prepareStatement("delete from b1");
+            return pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close(pstmt);
+        }
     }
 
     private void close(AutoCloseable... acs) {
