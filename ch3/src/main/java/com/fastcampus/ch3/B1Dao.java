@@ -30,26 +30,19 @@ public class B1Dao {
             return pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+            throw e;
         } finally {
 //            close(conn, pstmt);
             close(pstmt);
             DataSourceUtils.releaseConnection(conn, ds);
         }
-
-        return 0;
     }
 
-    public int deleteAll() {
-        PreparedStatement pstmt = null;
-        try {
-            Connection conn = ds.getConnection();
-            pstmt = conn.prepareStatement("delete from b1");
-            return pstmt.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            close(pstmt);
-        }
+    public int deleteAll() throws Exception {
+        Connection conn = ds.getConnection();
+        PreparedStatement pstmt = conn.prepareStatement("delete from b1");
+        close(pstmt);
+        return pstmt.executeUpdate();
     }
 
     private void close(AutoCloseable... acs) {
